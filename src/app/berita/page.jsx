@@ -44,7 +44,7 @@ export default function Berita() {
     return dataTampil.map((item, index) => (
       <a
         key={item.id || index}
-        href={`berita-detail?id=${item.id}`}
+        href={`berita-detail/${item.id}`}
         className="block bg-[#FFFBDE] shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition duration-200"
       >
         <img
@@ -88,8 +88,8 @@ export default function Berita() {
             key={i}
             onClick={() => gantiHalaman(i + 1)}
             className={`px-4 py-2 rounded-md font-semibold ${halamanSaatIni === i + 1
-                ? 'bg-[#129990] text-white'
-                : 'bg-white border border-gray-300 hover:bg-gray-100 transition'
+              ? 'bg-[#129990] text-white'
+              : 'bg-white border border-gray-300 hover:bg-gray-100 transition'
               }`}
           >
             {i + 1}
