@@ -60,7 +60,7 @@ const Belanja = () => {
               dataHalaman.map((item) => (
                 <a
                   key={item.id}
-                  href={`/produk-detail?id=${item.id}`}
+                  href={`/produk-detail/${item.id}`}
                   className="block bg-[#FFFBDE] shadow-lg rounded-xl overflow-hidden hover:shadow-xl transition duration-200"
                 >
                   <img
