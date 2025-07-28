@@ -1,30 +1,11 @@
+import { getHomeData } from '../lib/getHomeData';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Link from 'next/link';
 import AnnouncementItem from '../components/AnnouncementItem';
 
-export async function getData() {
-  const resHome = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/home-data`, { cache: 'no-store' });
-  const resBerita = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/berita`, { cache: 'no-store' });
-  const resProduk = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/produk`, { cache: 'no-store' });
-
-  const [homeData, beritaDataRaw, produkData] = await Promise.all([
-    resHome.json(),
-    resBerita.json(),
-    resProduk.json(),
-  ]);
-
-  const beritaSorted = beritaDataRaw.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
-
-  return {
-    ...homeData,
-    berita: beritaSorted.slice(0, 6),
-    produk: produkData.slice(0, 6),
-  };
-}
-
 export default async function Home() {
-  const data = await getData();
+  const data = await getHomeData();
 
   return (
     <div className="bg-gray-100 text-gray-800 font-inter">
@@ -102,7 +83,6 @@ export default async function Home() {
         </div>
       </section>
 
-
       {/* Administrasi Penduduk */}
       <section className="bg-white py-10 px-4">
         <h2 className="text-4xl font-bold text-center text-[#096B68] mb-10">ADMINISTRASI PENDUDUK</h2>
@@ -153,7 +133,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-
 
       {/* Berita Terbaru */}
       <section className="bg-white py-14 px-6">
