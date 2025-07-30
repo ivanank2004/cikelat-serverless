@@ -63,7 +63,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto bg-[#FFFBDE] rounded-2xl shadow-xl p-8 md:flex md:items-start md:space-x-10">
           <div className="flex-shrink-0 flex justify-center mb-6 md:mb-0">
             <img
-              src="/img/sukabumi.png"
+              src={getImageUrl("foto_kades/kepala-desa.png")}
               alt="Kepala Desa"
               className="w-52 h-52 md:w-64 md:h-64 object-contain"
             />

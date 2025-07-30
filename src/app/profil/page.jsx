@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import { getImageUrl } from '../../lib/getImageURL';
 
 export default function Profil() {
     const [data, setData] = useState(null);
@@ -71,7 +72,7 @@ export default function Profil() {
                                 </h2>
                                 <div className="flex justify-center">
                                     <img
-                                        src={`/img/${data.struktur_organisasi}`}
+                                        src={getImageUrl("struktur/struktur-organisasi.png")}
                                         alt="Struktur Organisasi"
                                         className="w-full max-w-3xl rounded-lg shadow-md cursor-pointer hover:shadow-xl transition duration-300"
                                         onClick={() => setOverlayOpen(true)}
@@ -136,7 +137,7 @@ export default function Profil() {
                         ×
                     </button>
                     <img
-                        src={`/img/${data.struktur_organisasi}`}
+                        src={getImageUrl("struktur/struktur-organisasi.png")}
                         alt="Struktur Organisasi Full"
                         className="max-w-full max-h-[90vh] rounded-lg shadow-2xl"
                     />
