@@ -16,6 +16,7 @@ export async function GET() {
     const pendidikanQuery = await client.query('SELECT jenjang, jumlah FROM pendidikan_terakhir');
     const perkawinanQuery = await client.query('SELECT status, jumlah FROM status_perkawinan');
     const agamaQuery = await client.query('SELECT nama, jumlah FROM agama');
+    const bansosQuery = await client.query('SELECT * FROM bansos LIMIT 1');
 
     // Data APBDes (tahun, pendapatan, belanja)
     const apbdesQuery = await client.query('SELECT tahun, pendapatan, belanja FROM apbdes ORDER BY tahun DESC');
@@ -29,7 +30,8 @@ export async function GET() {
       pendidikan_terakhir: pendidikanQuery.rows,
       status_perkawinan: perkawinanQuery.rows,
       agama: agamaQuery.rows,
-      apbdes: apbdesQuery.rows,  // tambahkan data apbdes di sini
+      apbdes: apbdesQuery.rows,
+      bansos: bansosQuery.rows[0] || {}, // ✅ Tambahan data bansos
     });
   } catch (error) {
     console.error('Database error:', error);

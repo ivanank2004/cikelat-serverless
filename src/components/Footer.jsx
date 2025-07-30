@@ -1,8 +1,19 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { getImageUrl } from '../lib/getImageURL';
 
 export default function Footer() {
+  const [footer, setFooter] = useState({ kontak: '', email: '' });
+
+  useEffect(() => {
+    fetch('/api/footer')
+      .then(res => res.json())
+      .then(data => setFooter(data))
+      .catch(err => console.error('Gagal memuat data footer:', err));
+  }, []);
+
   const navLinks = [
     { href: "/", label: "Beranda" },
     { href: "/profil", label: "Profil Desa" },
@@ -16,17 +27,26 @@ export default function Footer() {
     <footer className="bg-[#0e7e78] text-white mt-20">
       <div className="max-w-6xl mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm md:text-base">
         {/* Info Desa */}
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Desa Cikelat</h3>
-          <p>
-            Kecamatan Cisolok, Kabupaten Sukabumi
-            <br />
-            Provinsi Jawa Barat, Indonesia
-          </p>
+        <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-4">
+          <img
+            src={getImageUrl("img/sukabumi.png")}
+            alt="Logo Kabupaten Sukabumi"
+            className="w-20 md:w-24 h-auto"
+          />
+          <div>
+            <h3 className="text-lg font-semibold mb-2">Desa Cikelat</h3>
+            <p>
+              Kecamatan Cisolok, Kabupaten Sukabumi
+              <br />
+              Provinsi Jawa Barat, Indonesia
+              <br />
+              Kode Pos 43366
+            </p>
+          </div>
         </div>
 
         {/* Navigasi */}
-        <div>
+        <div className="text-center md:text-left">
           <h3 className="text-lg font-semibold mb-2">Navigasi</h3>
           <ul className="space-y-1">
             {navLinks.map((link) => (
@@ -39,19 +59,19 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Kontak */}
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Kontak</h3>
+        {/* Hubungi Kami */}
+        <div className="text-center md:text-left">
+          <h3 className="text-lg font-semibold mb-2">Hubungi Kami</h3>
           <p>
             Email:{' '}
-            <a href="mailto:info@desacikelat.id" className="underline">
-              info@desacikelat.id
+            <a href={`mailto:${footer.email}`} className="underline">
+              {footer.email || '—'}
             </a>
           </p>
           <p>
             Telepon:{' '}
-            <a href="tel:+6281234567890" className="underline">
-              +62 812-3456-7890
+            <a href={`tel:${footer.kontak}`} className="underline">
+              {footer.kontak || '—'}
             </a>
           </p>
         </div>

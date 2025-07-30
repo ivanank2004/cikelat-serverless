@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
-// Komponen BAR / LINE
 export function ChartBar({ type = "bar", labels, data, dataSets, options }) {
   const canvasRef = useRef(null);
   const chartInstance = useRef(null);
@@ -15,20 +14,23 @@ export function ChartBar({ type = "bar", labels, data, dataSets, options }) {
 
     const ctx = canvasRef.current.getContext("2d");
 
-    // Jika multiple datasets diberikan, gunakan itu
     const datasets = dataSets
       ? dataSets
       : [
-          {
-            label: options?.label || "Data",
-            backgroundColor: options?.backgroundColor || "#129990",
-            borderColor: options?.borderColor || "#129990",
-            data,
-          },
-        ];
+        {
+          label: options?.label || "Data",
+          backgroundColor: options?.backgroundColor || "#129990",
+          borderColor: options?.borderColor || "#129990",
+          data,
+          barThickness: options?.barThickness || 30,       
+          maxBarThickness: options?.maxBarThickness || 30, 
+          borderRadius: options?.borderRadius || 4,        
+        },
+      ];
+
 
     chartInstance.current = new Chart(ctx, {
-      type, // bisa "bar" atau "line"
+      type,
       data: {
         labels,
         datasets,
@@ -41,10 +43,9 @@ export function ChartBar({ type = "bar", labels, data, dataSets, options }) {
     };
   }, [type, labels, data, dataSets, options]);
 
-  return <canvas ref={canvasRef} height="300"></canvas>;
+  return <canvas ref={canvasRef} height="130"></canvas>;
 }
 
-// Komponen PIE (tidak diubah)
 export function ChartPie({ labels, data, options }) {
   const canvasRef = useRef(null);
   const chartInstance = useRef(null);

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getImageUrl } from '../lib/getImageURL';
 
 export default function Navbar() {
   const [isHidden, setIsHidden] = useState(false);
@@ -91,7 +92,7 @@ export default function Navbar() {
       {/* Navbar Content */}
       <div className="w-full flex items-center justify-between px-0 py-4">
         <Link href="/" className="flex items-center space-x-4 pl-4 cursor-pointer">
-          <img src="/img/sukabumi.png" alt="Logo Sukabumi" className="h-16 w-16 object-contain" />
+          <img src={getImageUrl("img/sukabumi.png")} alt="Logo Sukabumi" className="h-16 w-16 object-contain" />
           <div className="-ml-2">
             <div className="text-xl font-bold leading-tight">Desa Cikelat</div>
             <div className="text-sm text-white/80">Kabupaten Sukabumi</div>
@@ -101,7 +102,7 @@ export default function Navbar() {
         {/* Mobile Button */}
         <div className="lg:hidden px-4 py-2 flex justify-end">
           <button onClick={openMenu}>
-            <img src="/img/ham.png" alt="Menu" className="w-8 h-8" />
+            <img src={getImageUrl("img/ham.png")} alt="Menu" className="w-8 h-8" />
           </button>
         </div>
 

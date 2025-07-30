@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Link from 'next/link';
 import AnnouncementItem from '../components/AnnouncementItem';
+import { getImageUrl } from '../lib/getImageURL';
 
 export default async function Home() {
   const data = await getHomeData();
@@ -14,7 +15,7 @@ export default async function Home() {
       {/* Hero */}
       <main className="relative overflow-hidden h-screen">
         <img
-          src="/img/homepage.png"
+          src={getImageUrl("img/homepage.png")}
           alt="Desa Cikelat"
           className="w-full h-full object-cover filter blur-[3.5px] scale-105"
         />

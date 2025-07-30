@@ -78,6 +78,9 @@ export default function Infografis() {
                                 </div>
                             ) : (
                                 <>
+                                    <h2 className="text-3xl md:text-4xl font-bold text-center text-[#096B68] mb-12">
+                                        Data Demografi dan Statistik Penduduk Desa Cikelat
+                                    </h2>
                                     {/* Statistik Angka */}
                                     <section className="bg-[#FFFBDE] rounded-xl shadow-lg p-6">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -152,17 +155,36 @@ export default function Infografis() {
                                                 Distribusi Penduduk per Dusun
                                             </h2>
                                             <section className="bg-[#FFFBDE] rounded-xl shadow-lg p-6">
-                                                <ChartPie
-                                                    labels={data.dusun.map((item) => item.nama_dusun)}
-                                                    data={data.dusun.map((item) => item.jumlah)}
-                                                    options={{
-                                                        responsive: true,
-                                                        plugins: { legend: { position: "bottom" } },
-                                                    }}
-                                                />
+                                                <div className="flex flex-col lg:flex-row items-center gap-8">
+                                                    {/* Chart di kiri */}
+                                                    <div className="w-full lg:w-1/3">
+                                                        <ChartPie
+                                                            labels={data.dusun.map((item) => item.nama_dusun)}
+                                                            data={data.dusun.map((item) => item.jumlah)}
+                                                            options={{
+                                                                responsive: true,
+                                                                plugins: {
+                                                                    legend: { display: false },
+                                                                },
+                                                            }}
+                                                        />
+                                                    </div>
+
+                                                    {/* Keterangan di kanan */}
+                                                    <div className="w-full lg:w-2/3">
+                                                        <h3 className="text-xl font-semibold text-gray-800 mb-3">Keterangan:</h3>
+                                                        <ul className="space-y-2 text-gray-700 text-lg">
+                                                            {data.dusun.map((item, idx) => (
+                                                                <li key={idx}>
+                                                                    <span className="font-semibold">{item.nama_dusun}</span>:{" "}
+                                                                    {item.jumlah.toLocaleString("id-ID")} jiwa
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </section>
                                         </div>
-
                                         <div>
                                             <h2 className="text-3xl font-bold text-center text-[#096B68] mb-8">
                                                 Pendidikan Terakhir
@@ -240,7 +262,7 @@ export default function Infografis() {
                                         <section className="space-y-8">
                                             {/* Header + Dropdown Tahun */}
                                             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                                                <h2 className="text-2xl md:text-3xl font-bold text-[#096B68]">
+                                                <h2 className="text-3xl md:text-4xl font-bold text-center text-[#096B68] mb-12">
                                                     APB Desa Cikelat Tahun {selectedYear}
                                                 </h2>
                                                 <select
@@ -373,8 +395,30 @@ export default function Infografis() {
 
                     {/* Tab Bansos */}
                     {activeTab === "bansos" && (
-                        <div className="text-center py-20 text-gray-600 text-xl italic">
-                            Konten Bansos akan segera hadir.
+                        <div className="space-y-8">
+                            <h2 className="text-3xl md:text-4xl font-bold text-center text-[#096B68] mb-12">
+                                Penerima Bantuan Sosial Masyarakat Desa Cikelat
+                            </h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                                {[
+                                    { label: "BPJS PBI", key: "bpjs_pbi" },
+                                    { label: "PKH", key: "pkh" },
+                                    { label: "BPNT", key: "bpnt" },
+                                    { label: "BLT", key: "blt" },
+                                ].map(({ label, key }) => (
+                                    <div
+                                        key={key}
+                                        className="bg-[#FFFBDE] rounded-xl shadow-lg p-6 text-center"
+                                    >
+                                        <h3 className="text-2xl font-semibold text-[#129990] mb-2">{label}</h3>
+                                        <p className="text-4xl font-bold text-gray-800">
+                                            {data?.bansos?.[key] ?? 0}
+                                        </p>
+                                        <p className="text-sm text-gray-600 mt-1">Jumlah penerima</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     )}
                 </div>
