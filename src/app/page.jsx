@@ -142,7 +142,7 @@ export default async function Home() {
           {data.berita.map((item, index) => (
             <Link
               key={item.id || index}
-              href={`berita-detail?id=${item.id}`}
+              href={`berita-detail/${item.id}`}
               className="block bg-[#FFFBDE] shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-200"
             >
               <img
