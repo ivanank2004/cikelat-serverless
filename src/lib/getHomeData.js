@@ -1,8 +1,13 @@
-// src/lib/getHomeData.js
 export async function getHomeData() {
-  const resHome = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/home-data`, { cache: 'no-store' });
-  const resBerita = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/berita`, { cache: 'no-store' });
-  const resProduk = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/produk`, { cache: 'no-store' });
+  const resHome = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/home-data`, {
+    next: { revalidate: 60 },
+  });
+  const resBerita = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/berita`, {
+    next: { revalidate: 60 },
+  });
+  const resProduk = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/produk`, {
+    next: { revalidate: 60 },
+  });
 
   const [homeData, beritaDataRaw, produkData] = await Promise.all([
     resHome.json(),
