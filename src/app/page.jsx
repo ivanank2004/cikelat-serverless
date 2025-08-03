@@ -164,7 +164,7 @@ export default async function Home() {
           {data.berita.map((item, index) => (
             <Link
               key={item.id || index}
-              href={`berita-detail?id=${item.id}`}
+              href={`berita-detail/${item.id}`}
               className="bg-[#FFFBDE] shadow-md rounded-lg min-w-[80%] snap-start shrink-0 hover:shadow-lg transition duration-200"
             >
               <img src={item.gambar} alt={item.judul} className="w-full h-48 object-cover rounded-t-lg" />
@@ -191,7 +191,7 @@ export default async function Home() {
           {data.produk.map((item, index) => (
             <Link
               key={item.id || index}
-              href={`produk-detail?id=${item.id}`}
+              href={`produk-detail/{item.id}`}
               className="block bg-[#FFFBDE] shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-200"
             >
               <img src={item.gambar} alt={item.nama} className="w-full h-48 object-cover" />
@@ -208,7 +208,7 @@ export default async function Home() {
           {data.produk.map((item, index) => (
             <Link
               key={item.id || index}
-              href={`produk-detail?id=${item.id}`}
+              href={`produk-detail/{item.id}`}
               className="bg-[#FFFBDE] shadow-md rounded-lg min-w-[80%] snap-start shrink-0 hover:shadow-lg transition duration-200"
             >
               <img src={item.gambar} alt={item.nama} className="w-full h-48 object-cover rounded-t-lg" />
