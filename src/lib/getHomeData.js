@@ -3,10 +3,10 @@ export async function getHomeData() {
     next: { revalidate: 0 },
   });
   const resBerita = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/berita`, {
-    next: { revalidate: 0 },
+    next: { revalidate: 300 },
   });
   const resProduk = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/produk`, {
-    next: { revalidate: 0 },
+    next: { revalidate: 900 },
   });
   const resPengumuman = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/pengumuman`, {
     next: { revalidate: 0 },
@@ -29,3 +29,4 @@ export async function getHomeData() {
     pengumuman: pengumumanSorted.slice(0, 6),
   };
 }
+
