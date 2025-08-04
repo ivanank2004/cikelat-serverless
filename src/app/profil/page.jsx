@@ -72,7 +72,7 @@ export default function Profil() {
                                 </h2>
                                 <div className="flex justify-center">
                                     <img
-                                        src={getImageUrl("struktur/struktur-organisasi.png")}
+                                        src={getImageUrl("struktur/struktur-organisasi.jpg")}
                                         alt="Struktur Organisasi"
                                         className="w-full max-w-3xl rounded-lg shadow-md cursor-pointer hover:shadow-xl transition duration-300"
                                         onClick={() => setOverlayOpen(true)}
@@ -148,3 +148,4 @@ export default function Profil() {
         </div>
     );
 }
+
