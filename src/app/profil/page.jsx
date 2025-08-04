@@ -137,7 +137,7 @@ export default function Profil() {
                         ×
                     </button>
                     <img
-                        src={getImageUrl("struktur/struktur-organisasi.png")}
+                        src={getImageUrl("struktur/struktur-organisasi.jpg")}
                         alt="Struktur Organisasi Full"
                         className="max-w-full max-h-[90vh] rounded-lg shadow-2xl"
                     />
@@ -148,4 +148,5 @@ export default function Profil() {
         </div>
     );
 }
+
 
